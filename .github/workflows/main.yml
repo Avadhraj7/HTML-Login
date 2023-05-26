@@ -1,8 +1,9 @@
 name: Run tests
 
 on:
-  repository_dispatch:
-    types: [run-tests]
+  push:
+    branches:
+      - master
 
 jobs:
   run-tests:
@@ -12,7 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          ref: main
+          ref: master
 
       - name: Install dependencies
         run: npm install
