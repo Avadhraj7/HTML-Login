@@ -16,7 +16,7 @@ jobs:
           ref: master
 
       - name: Trigger Repository B
-        uses: Avadhraj7/VepaarJenkin@v2
+        uses: Avadhraj7/VepaarJenkin@v3
         with:
           token: ${{ secrets.REPO_B_ACCESS_TOKEN }}
           repository: Avadhraj7/VepaarJenkin
