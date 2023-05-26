@@ -1,4 +1,4 @@
-name: Run tests
+name: Run Cypress tests
 
 on:
   push:
@@ -6,17 +6,11 @@ on:
       - master
 
 jobs:
-  run-tests:
+  test:
     runs-on: windows-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-          ref: master
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run tests
+      - uses: actions/checkout@v2
+      - name: Install Cypress
+        run: npm install cypress --save-dev
+      - name: Run Cypress tests
         run: npm run runtests
