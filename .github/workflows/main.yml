@@ -1,20 +1,24 @@
-name: main
+name: Push to Repository A
+
 on:
   push:
     branches:
       - master
-  pull_request:
+
 jobs:
-  build-and-test:
+  trigger-repo-b:
     runs-on: windows-latest
-    name: Build and test
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Setup Node
-        uses: actions/setup-node@v3
+      - name: Checkout code
+        uses: actions/checkout@v2
         with:
-          token: ${{ secrets.REPO_A_TOKEN }}
+          repository: Avadhraj/VepaarJenkin
+          ref: master
+
+      - name: Trigger Repository B
+        uses: Avadhraj7/repository-dispatch@v1
+        with:
+          token: ${{ secrets.REPO_B_ACCESS_TOKEN }}
           repository: Avadhraj7/VepaarJenkin
-          event-type: run-cypress-tests
-      - run: npm run runtests
+          event-type: run-tests
