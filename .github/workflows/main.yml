@@ -3,8 +3,7 @@ name: Execute Cypress Tests
 on:
   push:
     branches:
-      
-master # Adjust this to match your branch name
+      master # Adjust this to match your branch name
 
 jobs:
   run-cypress:
