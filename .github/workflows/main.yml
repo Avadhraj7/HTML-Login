@@ -12,7 +12,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          repository: Avadhraj/VepaarJenkin
+          repository: Avadhraj7/VepaarJenkin
           ref: master
 
       - name: Trigger Repository B
