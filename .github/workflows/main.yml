@@ -9,8 +9,15 @@ jobs:
   test:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Install Cypress
-        run: npm install cypress --save-dev
-      - name: Run Cypress tests
-        run: npm run
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          repository: Avadhraj/VepaarJenkin
+          ref: master
+
+      - name: Trigger Repository B
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.REPO_A_TOKEN }}
+          repository: Avadhraj/VepaarJenkin
+          event-type: run-tests
