@@ -1,24 +1,21 @@
-name: Push to Repository A
+name: Run tests
 
 on:
-  push:
-    branches:
-      - master
+  repository_dispatch:
+    types: [run-tests]
 
 jobs:
-  trigger-repo-b:
+  run-tests:
     runs-on: windows-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          repository: Avadhraj/repository-dispatch@v3
-          ref: master
+          ref: main
 
-      - name: Trigger Repository B
-        uses: Avadhraj7/repository-dispatch@v3
-        with:
-          token: ${{ secrets.REPO_B_TOKEN }}
-          repository: Avadhraj7/VepaarJenkin
-          event-type: run-tests
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm run runtests
