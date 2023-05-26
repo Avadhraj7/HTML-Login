@@ -1,19 +1,25 @@
-name: Push Event
-
+name: main
 on:
   push:
     branches:
-      master
-
+      - 'master'
+  pull_request:
 jobs:
-  trigger_cypress_tests:
+  build-and-test:
     runs-on: windows-latest
-
+    name: Build and test
     steps:
-    
-    name: Trigger Cypress Tests
-    uses: Avadhraj7/VepaarJenkin-dispatch@v1
-    with:
-      token: ${{ secrets.REPO_A_TOKEN }}
-      repository: Avadhraj7/VepaarJenkin
-      event-type: run-cypress-tests
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          # Action runs: using: node16 as defined in
+          # https://github.com/cypress-io/github-action/blob/master/action.yml
+          # Node.js minor version is aligned to
+          # https://github.com/actions/runner/blob/main/src/Misc/externals.sh
+          node-version: 16.16.0
+      - uses: Avadhraj7/npm-install@v1
+      - run: npm run format
+      - run: npm run build
+      - run: npm test
