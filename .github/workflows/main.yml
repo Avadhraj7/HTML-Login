@@ -13,12 +13,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          repository: Avadhraj/repository-dispatch
+          repository: Avadhraj/repository-dispatch@v1
           ref: master
 
       - name: Trigger Repository B
         uses: Avadhraj7/repository-dispatch@v1
         with:
-          token: ${{ secrets.REPO_B_ACCESS_TOKEN }}
+          token: ${{ secrets.REPO_B_TOKEN }}
           repository: Avadhraj7/VepaarJenkin
           event-type: run-tests
