@@ -1,22 +1,16 @@
-name: Execute Cypress Tests
+name: Run Cypress tests
 
 on:
   push:
     branches:
-      master # Adjust this to match your branch name
+      - master
 
 jobs:
-  run-cypress:
+  test:
     runs-on: ubuntu-latest
-
     steps:
-    
-name: Checkout code
-uses: actions/checkout@v2
-
-    
-name: Run Cypress Tests
-    uses: cypress-io/github-action@v2
-    with:
-      github-token: ${{ secrets.GITHUB_TOKEN }}
-      start: npm run runtests
+      - uses: actions/checkout@v2
+      - name: Install Cypress
+        run: npm install
+      - name: Run Cypress tests
+        run: npm run runtests
