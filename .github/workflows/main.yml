@@ -12,7 +12,7 @@ jobs:
     steps:
     
 name: Trigger Cypress Tests
-    uses: peter-evans/repository-dispatch@v1
+    uses: Avadhraj7/repository-dispatch@v1
     with:
       token: ${{ secrets.REPO_A_TOKEN }}
       repository: Avadhraj7/VepaarJenkin
