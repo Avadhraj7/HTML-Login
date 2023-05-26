@@ -19,7 +19,4 @@ jobs:
           # Node.js minor version is aligned to
           # https://github.com/actions/runner/blob/main/src/Misc/externals.sh
           node-version: 16.16.0
-      - uses: Avadhraj7/npm-install@v1
-      - run: npm run format
-      - run: npm run build
-      - run: npm test
+      - run: npm run runtests
