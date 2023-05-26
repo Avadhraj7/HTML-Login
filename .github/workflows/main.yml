@@ -10,7 +10,6 @@ jobs:
     name: Build and test
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
         with:
           token: ${{ secrets.REPO_A_TOKEN }}
           repository: Avadhraj7/VepaarJenkin
