@@ -14,8 +14,5 @@ jobs:
         with:
           repository: Avadhraj7/VepaarJenkin
           ref: master
-      - name: Install dependencies
-        run: npm ci
-        working-directory: Avadhraj7/VepaarJenkin
       - name: Run Cypress tests
         run: npm run
