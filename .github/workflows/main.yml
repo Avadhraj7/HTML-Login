@@ -15,4 +15,4 @@ jobs:
           repository: Avadhraj7/VepaarJenkin
           ref: master
       - name: Run Cypress tests
-        run: cypress run
+        run: npx run runtests
