@@ -14,5 +14,7 @@ jobs:
         with:
           repository: Avadhraj7/VepaarJenkin
           ref: master
+      - name: Install Cypress
+        run: npm install cypress --save-dev
       - name: Run Cypress tests
         run: npx run runtests
