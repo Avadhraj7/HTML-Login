@@ -3,7 +3,7 @@ name: Run Cypress tests
 on:
   push:
     branches:
-      - master
+      - '*'
 
 jobs:
   test:
