@@ -1,0 +1,42 @@
+name: Find Sensitive Keys
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  find-keys:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Find Keys
+        run: |
+          # Search for sensitive keys
+          KEY_FOUND=$(grep -r --exclude=*.md --exclude-dir=.git \
+              -e "AKIA[0-9A-Z]{16}" \
+              -e "6L[0-9A-Za-z_-]{38}" \
+              -e "AIza[0-9A-Za-z_-]{35}" \
+              -e "AIza[0-9A-Za-z_-]{39}" \
+              . || true)
+
+          # Set an environment variable if keys are found
+          if [ -n "$KEY_FOUND" ]; then
+            echo "Sensitive keys found in the code."
+            export KEY_FOUND=true
+          else
+            echo "No sensitive keys found."
+            export KEY_FOUND=false
+          fi
+
+      - name: Take Action if Keys Found
+        run: |
+          if [ "$KEY_FOUND" = true ]; then
+            echo "Take appropriate action here, such as sending a notification or failing the build."
+            # Add your actions here
+          else
+            echo "No action needed."
+          fi
