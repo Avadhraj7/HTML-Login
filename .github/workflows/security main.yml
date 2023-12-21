@@ -3,7 +3,8 @@ name: Find Sensitive Keys
 on:
   push:
     branches:
-      - main
+      - '*'
+      - '!main'
 
 jobs:
   find-keys:
